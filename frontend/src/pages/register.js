@@ -18,15 +18,15 @@ export default function Register(){
 
         const [username, setName] = useState("");
         const [password, setPass] = useState("");
+        const [confim_pass, setConfim] = useState("");
         const [email, setEmail] = useState("");
-        const [phone, setTel] = useState("");
         
         const toast = useToast();
 
         const postRequestHandler = async () => {
-          const data = {username, password, email, phone};
+          const data = {username, password, confim_pass, email};
 
-          if (username === "" || password === "" || email === "" ) {
+          if (username === "" || password === "" || email === "" || confim_pass==="") {
               alert('ada data yang masih kosong')
           }else{
             try {
@@ -41,7 +41,7 @@ export default function Register(){
               setName("");
               setPass("");
               setEmail("");
-              setTel("");
+              setConfim("");
             }).then(()=>{ window.location = "/"})
             } catch (err) {
               console.log(err)
@@ -79,6 +79,16 @@ export default function Register(){
                     <InputGroup>
                     <FormLabel pr={'1'}>Password</FormLabel>
                     <Input value={password} onChange={(e) => setPass(e.target.value)}  pr='4.5rem' type={show ? 'text' : 'password'} placeholder='Enter password' />
+                    <InputRightElement width='4.5rem'>
+                    <Button h='1.75rem' size='sm' onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                    </Button>
+                    </InputRightElement>
+                    </InputGroup>
+
+                    <InputGroup>
+                    <FormLabel pr={'1'}>Confirmation Password</FormLabel>
+                    <Input value={confim_pass} onChange={(e) => setConfim(e.target.value)}  pr='4.5rem' type={show ? 'text' : 'password'} placeholder='Enter password' />
                     <InputRightElement width='4.5rem'>
                     <Button h='1.75rem' size='sm' onClick={handleClick}>
                         {show ? 'Hide' : 'Show'}

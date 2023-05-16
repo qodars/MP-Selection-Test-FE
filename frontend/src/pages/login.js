@@ -47,7 +47,7 @@ export default function Login(){
                             'Berhasil login',
                             'success'
                         ).then(function(){
-                            window.location = "/productPage"
+                            window.location = "/home"
                         })
                         
                     })
@@ -60,7 +60,7 @@ export default function Login(){
 
         //send email for forgotpassword
 
-       const [send_Email, setSendemail] = useState(""); 
+       const [email, setSendemail] = useState(""); 
        const toast = useToast();
 
         const defaultToastProps = {
@@ -69,9 +69,9 @@ export default function Login(){
             isClosable: true,
            };
        const requestSendEmail = async () =>{
-        const data = { send_Email}
+        const data = { email}
 
-        if (send_Email === '') {
+        if (email === '') {
           alert('Email belum disi')
         }else{
           try {
@@ -158,7 +158,7 @@ export default function Login(){
                             <FormControl>
                             <FormLabel>Email</FormLabel>
                             <Input id='email' type='email'
-                             value={send_Email} onChange={(e) =>{setSendemail(e.target.value)}}
+                             value={email} onChange={(e) =>{setSendemail(e.target.value)}}
                             ref={initialRef} placeholder="insert your email" />
                             </FormControl>
                         </ModalBody>
