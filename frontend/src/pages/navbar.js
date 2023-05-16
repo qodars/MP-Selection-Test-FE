@@ -9,8 +9,23 @@ import {
     useBreakpointValue,
   } from '@chakra-ui/react'
   import { FiMenu } from 'react-icons/fi'
+  import Swal from 'sweetalert2'
 export default function Navbar() {
     const isDesktop = useBreakpointValue({ base: false, lg: true })
+
+    const requestLogout = async ()=>{
+      try {
+        Swal.fire(
+          '',
+          'Berhasil logout',
+          'success'
+      ).then(function(){
+        window.location = "/"
+      })
+      } catch (error) {
+        
+      }
+    }
     return(<Box as="section" pb={{ base: '12', md: '24' }}>
     <Box as="nav" bg="bg-surface" boxShadow="sm">
       <Container py={{ base: '4', lg: '5' }}>
@@ -23,7 +38,7 @@ export default function Navbar() {
                   <Button onClick={()=>{window.location="/"}} > Upload</Button>
               </ButtonGroup>
               <HStack spacing="3">
-                <Button  colorScheme='teal'>Logout</Button>
+                <Button  colorScheme='teal' onClick={requestLogout}>Logout</Button>
               </HStack>
             </Flex>
           ) : (
